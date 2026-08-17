@@ -2277,8 +2277,8 @@ document.querySelectorAll('.viz-sec, .reveal').forEach(function(s){obs.observe(s
     var mv=document.getElementById('machSvg');
     if(mv&&'IntersectionObserver' in window){var io2=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){setTimeout(runSweep,220);io2.disconnect();}});},{threshold:.4});io2.observe(mv);}
     /* flip peek hint on first card */
-    var hides=document.getElementById('hides'),first=document.querySelector('#hides .flipcard');
-    if(hides&&first&&'IntersectionObserver' in window){var io3=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){setTimeout(function(){first.classList.add('peek');setTimeout(function(){first.classList.remove('peek');},1000);},600);io3.disconnect();}});},{threshold:.4});io3.observe(hides);}
+    var hides=document.getElementById('hides'),cards=document.querySelectorAll('#hides .flipcard');
+    if(hides&&cards.length&&'IntersectionObserver' in window){var io3=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){[].forEach.call(cards,function(c,i){setTimeout(function(){c.classList.add('peek');setTimeout(function(){c.classList.remove('peek');},1000);},500+i*480);});io3.disconnect();}});},{threshold:.4});io3.observe(hides);}
   }
   if(document.readyState!=='loading') init(); else addEventListener('DOMContentLoaded',init);
 })();
